@@ -1,6 +1,4 @@
-#pragma optimize(off)
-
-precision highp float;
+precision mediump float;
 
 varying vec3 vColor;
 
