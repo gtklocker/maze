@@ -1,6 +1,5 @@
 //console.log( 'Map length', map.length );
 for ( var i = 0; i < map.length; ++i ) {
-    //console.log( 'Loading wall', i );
     var wall = map[ i ];
     switch ( wall.direction ) {
         case MAP_HORIZONTAL:

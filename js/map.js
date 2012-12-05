@@ -17,9 +17,10 @@ var map = [
     //{ x: -1, z: -2, length: 2, direction: MAP_VERTICAL },
     //{ x: -1, z: -6, length: 2, direction: MAP_VERTICAL },
     //{ x: 1, z: -3, length: 4, direction: MAP_VERTICAL },
-    //{ x: 1, z: -9, length: 2, direction: MAP_VERTICAL }
+    { x: 1, z: -9, length: 2, direction: MAP_VERTICAL }
 ];
 
+/*
 for ( var i = 0; i < 100; ++i ) {
     map.push(
         {
@@ -30,3 +31,4 @@ for ( var i = 0; i < 100; ++i ) {
         }
     );
 }
+*/
