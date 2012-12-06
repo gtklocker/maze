@@ -20,7 +20,6 @@ var map = [
     { x: 1, z: -9, length: 2, direction: MAP_VERTICAL }
 ];
 
-/*
 for ( var i = 0; i < 100; ++i ) {
     map.push(
         {
@@ -31,4 +30,3 @@ for ( var i = 0; i < 100; ++i ) {
         }
     );
 }
-*/
