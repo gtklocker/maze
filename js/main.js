@@ -186,12 +186,11 @@ function placeCubeXZ( x, y, z, lambda ) {
     var uvMatrix = mat4.create();
     mat4.identity( uvMatrix );
     cubes.push( [ modelMatrix ] );
+    cubes[ cubes.length - 1 ].push( WebGL.createFloatBuffer( model.uvFlat( lambda ) ) );
     if ( lambda === 100 ) {
-        cubes[ cubes.length - 1 ].push( model.uvFlat( lambda ) );
         cubes[ cubes.length - 1 ].push( 1 );
     }
     if ( lambda === 101 ) {
-        cubes[ cubes.length - 1 ].push( model.uvFlat( lambda ) );
         cubes[ cubes.length - 1 ].push( 2 );
     }
 }
@@ -205,7 +204,8 @@ function placeCubeZ( x, y, z, lambda ) {
     mat4.translate( modelMatrix, [ x, y, z ] );
     mat4.scale( modelMatrix, [ 1, 1, lambda ] );
 
-    cubes.push( [ modelMatrix, model.uvVertical( lambda ) ] );
+    cubes.push( [ modelMatrix,
+                WebGL.createFloatBuffer( model.uvVertical( lambda ) ) ] );
 }
 function placeCubeX( x, y, z, lambda ) {
     if ( typeof lambda == 'undefined' ) {
@@ -217,31 +217,33 @@ function placeCubeX( x, y, z, lambda ) {
     mat4.identity( modelMatrix );
     mat4.translate( modelMatrix, [ x, y, z ] );
     mat4.scale( modelMatrix, [ lambda, 1, 1 ] );
-    cubes.push( [ modelMatrix, model.uvHorizontal( lambda ) ] );
+    cubes.push( [ modelMatrix,
+                WebGL.createFloatBuffer( model.uvHorizontal( lambda ) ) ] );
 }
-function drawCube( i ) {
+function drawCube( index ) {
+    var cube = cubes[ index ];
     //var matrixLocation = gl.getUniformLocation( gl.program, 'uModelView' );
     var modelView = mat4.create();
     mat4.identity( modelView );
     mat4.multiply( modelView, matrix.zoom );
-    mat4.multiply( modelView, cubes[ i ][ 0 ] );
+    mat4.multiply( modelView, cube[ 0 ] );
 
     var mvMatrixPosition = gl.getUniformLocation( gl.program, 'uModelView' );
     var uvPosition = gl.getAttribLocation( gl.program, 'aUV' );
     var samplerPosition = gl.getUniformLocation( gl.program, 'uSampler' );
-    var buffer = WebGL.createFloatBuffer( cubes[ i ][ 1 ] );
+    gl.bindBuffer( gl.ARRAY_BUFFER, cube[ 1 ] );
     gl.enableVertexAttribArray( uvPosition );
     gl.vertexAttribPointer( uvPosition, 2, gl.FLOAT, false, 0, 0 );
     gl.uniformMatrix4fv( mvMatrixPosition, false, modelView );
 
-    if ( cubes[ i ][ 2 ] == 2 ) {
-        // floor/ceil
+    if ( cube[ 2 ] == 2 ) {
+        // floor
         gl.activeTexture( gl.TEXTURE0 );
         gl.bindTexture( gl.TEXTURE_2D, floorTexture );
         gl.uniform1i( samplerPosition, 0 );
     }
-    else if ( cubes[ i ][ 2 ] == 1 ) {
-        // floor/ceil
+    else if ( cube[ 2 ] == 1 ) {
+        // ceil
         gl.activeTexture( gl.TEXTURE0 );
         gl.bindTexture( gl.TEXTURE_2D, ceilTexture );
         gl.uniform1i( samplerPosition, 0 );
