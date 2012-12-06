@@ -44,28 +44,28 @@ var model = {
       16, 17, 18, 16, 18, 19, // Right face
       20, 21, 22, 20, 22, 23  // Left face
     ],
-    uvHorizontal: function( λ ) {
+    uvHorizontal: function( lambda ) {
         return [
           // Front
-          λ * 0.0,  1 * 0.0,
-          λ * 1.0,  1 * 0.0,
-          λ * 1.0,  1 * 1.0,
-          λ * 0.0,  1 * 1.0,
+          lambda * 0.0,  1 * 0.0,
+          lambda * 1.0,  1 * 0.0,
+          lambda * 1.0,  1 * 1.0,
+          lambda * 0.0,  1 * 1.0,
           // Back
-          λ * 1.0,  1 * 1.0,
-          λ * 1.0,  1 * 0.0,
-          λ * 0.0,  1 * 0.0,
-          λ * 0.0,  1 * 1.0,
+          lambda * 1.0,  1 * 1.0,
+          lambda * 1.0,  1 * 0.0,
+          lambda * 0.0,  1 * 0.0,
+          lambda * 0.0,  1 * 1.0,
           // Top
-          λ * 0.0,  1 * 0.0,
-          λ * 1.0,  1 * 0.0,
-          λ * 1.0,  1 * 1.0,
-          λ * 0.0,  1 * 1.0,
+          lambda * 0.0,  1 * 0.0,
+          lambda * 1.0,  1 * 0.0,
+          lambda * 1.0,  1 * 1.0,
+          lambda * 0.0,  1 * 1.0,
           // Bottom
-          λ * 0.0,  1 * 0.0,
-          λ * 1.0,  1 * 0.0,
-          λ * 1.0,  1 * 1.0,
-          λ * 0.0,  1 * 1.0,
+          lambda * 0.0,  1 * 0.0,
+          lambda * 1.0,  1 * 0.0,
+          lambda * 1.0,  1 * 1.0,
+          lambda * 0.0,  1 * 1.0,
           // Right
           1 * 0.0,  1 * 0.0,
           1 * 0.0,  1 * 1.0,
@@ -78,7 +78,7 @@ var model = {
           1 * 0.0,  1 * 1.0,
         ];
     },
-    uvVertical: function( λ ) {
+    uvVertical: function( lambda ) {
         return [
           // Front
           1 * 0.0,  1 * 0.0,
@@ -91,59 +91,59 @@ var model = {
           1 * 0.0,  1 * 0.0,
           1 * 0.0,  1 * 1.0,
           // Top
-          1 * 0.0,  λ * 0.0,
-          1 * 1.0,  λ * 0.0,
-          1 * 1.0,  λ * 1.0,
-          1 * 0.0,  λ * 1.0,
+          1 * 0.0,  lambda * 0.0,
+          1 * 1.0,  lambda * 0.0,
+          1 * 1.0,  lambda * 1.0,
+          1 * 0.0,  lambda * 1.0,
           // Bottom
-          1 * 0.0,  λ * 0.0,
-          1 * 1.0,  λ * 0.0,
-          1 * 1.0,  λ * 1.0,
-          1 * 0.0,  λ * 1.0,
+          1 * 0.0,  lambda * 0.0,
+          1 * 1.0,  lambda * 0.0,
+          1 * 1.0,  lambda * 1.0,
+          1 * 0.0,  lambda * 1.0,
           // Right
-          λ * 0.0,  1 * 0.0,
-          λ * 0.0,  1 * 1.0,
-          λ * 1.0,  1 * 1.0,
-          λ * 1.0,  1 * 0.0,
+          lambda * 0.0,  1 * 0.0,
+          lambda * 0.0,  1 * 1.0,
+          lambda * 1.0,  1 * 1.0,
+          lambda * 1.0,  1 * 0.0,
           // Left
-          λ * 0.0,  1 * 0.0,
-          λ * 1.0,  1 * 0.0,
-          λ * 1.0,  1 * 1.0,
-          λ * 0.0,  1 * 1.0,
+          lambda * 0.0,  1 * 0.0,
+          lambda * 1.0,  1 * 0.0,
+          lambda * 1.0,  1 * 1.0,
+          lambda * 0.0,  1 * 1.0,
         ];
     },
-    uvFlat: function( λ ) {
+    uvFlat: function( lambda ) {
         return [
           // Front
-          λ * 0.0,  λ * 0.0,
-          λ * 1.0,  λ * 0.0,
-          λ * 1.0,  λ * 1.0,
-          λ * 0.0,  λ * 1.0,
+          lambda * 0.0,  lambda * 0.0,
+          lambda * 1.0,  lambda * 0.0,
+          lambda * 1.0,  lambda * 1.0,
+          lambda * 0.0,  lambda * 1.0,
           // Back
-          λ * 1.0,  λ * 1.0,
-          λ * 1.0,  λ * 0.0,
-          λ * 0.0,  λ * 0.0,
-          λ * 0.0,  λ * 1.0,
+          lambda * 1.0,  lambda * 1.0,
+          lambda * 1.0,  lambda * 0.0,
+          lambda * 0.0,  lambda * 0.0,
+          lambda * 0.0,  lambda * 1.0,
           // Top
-          λ * 1.0,  λ * 1.0,
-          λ * 1.0,  λ * 0.0,
-          λ * 0.0,  λ * 0.0,
-          λ * 0.0,  λ * 1.0,
+          lambda * 1.0,  lambda * 1.0,
+          lambda * 1.0,  lambda * 0.0,
+          lambda * 0.0,  lambda * 0.0,
+          lambda * 0.0,  lambda * 1.0,
           // Bottom
-          λ * 1.0,  λ * 1.0,
-          λ * 1.0,  λ * 0.0,
-          λ * 0.0,  λ * 0.0,
-          λ * 0.0,  λ * 1.0,
+          lambda * 1.0,  lambda * 1.0,
+          lambda * 1.0,  lambda * 0.0,
+          lambda * 0.0,  lambda * 0.0,
+          lambda * 0.0,  lambda * 1.0,
           // Right
-          λ * 0.0,  λ * 0.0,
-          λ * 0.0,  λ * 1.0,
-          λ * 1.0,  λ * 1.0,
-          λ * 1.0,  λ * 0.0,
+          lambda * 0.0,  lambda * 0.0,
+          lambda * 0.0,  lambda * 1.0,
+          lambda * 1.0,  lambda * 1.0,
+          lambda * 1.0,  lambda * 0.0,
           // Left
-          λ * 0.0,  λ * 0.0,
-          λ * 1.0,  λ * 0.0,
-          λ * 1.0,  λ * 1.0,
-          λ * 0.0,  λ * 1.0,
+          lambda * 0.0,  lambda * 0.0,
+          lambda * 1.0,  lambda * 0.0,
+          lambda * 1.0,  lambda * 1.0,
+          lambda * 0.0,  lambda * 1.0,
         ];
     },
     uv: [
