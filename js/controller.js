@@ -17,10 +17,10 @@ document.onkeydown = function( e ) {
             viewAngle = -.10;
             break;
         case 40: //down
-            viewZ = -.10;
+            viewZ = -.20;
             break;
         case 38: //up
-            viewZ = .10;
+            viewZ = .20;
             break;
     }
 };
