@@ -19,44 +19,6 @@ function init( vSrc, fSrc ) {
     push.uv();
     push.indices();
 }
-loadTexture( 'textures/wall.jpg' );
-loadTexture( 'textures/floor.jpg' );
-loadTexture( 'textures/ceil.jpg' );
-var wallTexture,
-    floorTexture,
-    ceilTexture;
-function loadTexture( src ) {
-    var texture = gl.createTexture();
-    var image = new Image();
-    image.onload = function() {
-        // push texture
-        if ( image.src.search( 'wall' ) >= 0 ) {
-            wallTexture = handleTexture( image, texture );
-        }
-        if ( image.src.search( 'floor' ) >= 0 ) {
-            floorTexture = handleTexture( image, texture );
-        }
-        if ( image.src.search( 'ceil' ) >= 0 ) {
-            ceilTexture = handleTexture( image, texture );
-        }
-        //var samplerPosition = gl.getUniformLocation( gl.program, 'uSampler' );
-        //gl.activeTexture( gl.TEXTURE0 );
-        //gl.bindTexture( gl.TEXTURE_2D, texture );
-        //gl.uniform1i( samplerPosition, 0 );
-    };
-    //image.src = 'textures/wall.jpg';
-    image.src = src;
-}
-function handleTexture( image, texture ) {
-    gl.bindTexture( gl.TEXTURE_2D, texture );
-    gl.texImage2D( gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image );
-    gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR );
-    gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR );
-    //gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.MIRRORED_REPEAT );
-    //gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.MIRRORED_REPEAT );
-    gl.generateMipmap( gl.TEXTURE_2D );
-    return texture;
-}
 
 matrix = {
     projection: mat4.create(),
@@ -254,33 +216,4 @@ function drawCube( index ) {
         gl.uniform1i( samplerPosition, 0 );
     }
     gl.drawElements( gl.TRIANGLES, model.indices.length, gl.UNSIGNED_SHORT, 0 );
-}
-var oldTime = Date.now();
-var viewAngle, viewZ;
-viewAngle = viewZ = 0;
-var FIX = 1 / 16.666;
-function integrate( dt ) {
-    matrix.moveCamera( 0, viewZ * dt * FIX, viewAngle * dt * FIX );
-}
-function render() {
-    gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT );
-    for ( var i = 0; i < cubes.length; ++i ) {
-        drawCube( i );
-    }
-    var newTime = Date.now();
-    registerFps( newTime - oldTime );
-    integrate( newTime - oldTime );
-    oldTime = newTime;
-    window.requestAnimationFrame( render, canvas );
-}
-
-var fps = 0, fpsTime = 0;
-function registerFps( dt ) {
-    fpsTime += dt;
-    ++fps;
-
-    if ( fpsTime >= 1000 ) {
-        document.title = fps + ' fps';
-        fps = fpsTime = 0;
-    }
 }
